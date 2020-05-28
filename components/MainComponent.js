@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Directory from "./DirectoryComponent";
-import { CampsiteInfo } from "./CampsiteInfoComponent";
+import CampsiteInfo from "./CampsiteInfoComponent";
 import { View } from "react-native";
 import { CAMPSITES } from "../shared/campsites";
 
