@@ -14,10 +14,10 @@ export const promotions = (
       };
 
     case ActionTypes.PROMOTIONS_LOADING:
-      return { ...state, isLoading: true, promotions: [] };
+      return { ...state, isLoading: true, errMess: null, promotions: [] };
 
     case ActionTypes.PROMOTIONS_FAILED:
-      return { ...state, errMess: action.payload };
+      return { ...state, isLoading: false, errMess: action.payload };
 
     default:
       return state;

@@ -14,10 +14,10 @@ export const partners = (
       };
 
     case ActionTypes.PARTNERS_LOADING:
-      return { ...state, isLoading: true, partners: [] };
+      return { ...state, isLoading: true, errMess: null, partners: [] };
 
     case ActionTypes.PARTNERS_FAILED:
-      return { ...state, errMess: action.payload };
+      return { ...state, isLoading: false, errMess: action.payload };
 
     default:
       return state;
