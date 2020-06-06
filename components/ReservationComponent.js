@@ -66,6 +66,7 @@ class Reservation extends Component {
         <View style={styles.formRow}>
           <Text style={styles.formLabel}>Hike-In?</Text>
           <Switch
+            style={styles.formItem}
             value={this.state.hikeIn}
             trackColor={{ true: "#5637DD", false: null }}
             onValueChange={(value) => this.setState({ hikeIn: value })}
