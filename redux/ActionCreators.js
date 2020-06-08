@@ -167,6 +167,7 @@ export const addFavorite = (campsiteId) => ({
 });
 
 export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
+  console.log("Post comment called");
   const newComment = {
     campsiteId,
     rating,
@@ -176,9 +177,8 @@ export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
   newComment.date = new Date().toISOString();
   setTimeout(() => {
     dispatch(addComment(newComment));
-  }, 2000);
+  }, 500);
 };
-
 export const addComment = (comment) => ({
   type: ActionTypes.ADD_COMMENT,
   payload: comment,
