@@ -9,7 +9,7 @@ class Contact extends Component {
   render() {
     return (
       <ScrollView>
-        <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
+        <Animatable.View animation="flipInX" duration={2000} delay={500}>
           <Card title="Contact Information" wrapperStyle={{ margin: 20 }}>
             <Text style={{ marginBottom: 10 }}>
               1 Nucamp Way Seattle, {"\n"}WA 98001 {"\n"}U.S.A.

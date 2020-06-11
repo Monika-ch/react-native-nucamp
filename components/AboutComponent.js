@@ -68,7 +68,7 @@ class About extends Component {
 
     return (
       <ScrollView>
-        <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
+        <Animatable.View animation="bounceInLeft" duration={2000} delay={1000}>
           <Mission />
           <Card title="Community Partners">
             <FlatList
