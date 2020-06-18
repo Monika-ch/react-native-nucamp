@@ -193,7 +193,18 @@ class RegisterTab extends Component {
               loadingIndicatorSource={require("./images/logo.png")}
               style={styles.image}
             />
-            <Button title="Camera" onPress={this.getImageFromCamera} />
+            <Button
+              // title="Camera"
+              icon={
+                <Icon
+                  name="camera"
+                  type="font-awesome"
+                  color="#fff"
+                  iconStyle={{ margin: 3 }}
+                />
+              }
+              onPress={this.getImageFromCamera}
+            />
           </View>
           <Input
             placeholder="Username"
