@@ -6,6 +6,8 @@ import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import { createBottomTabNavigator } from "react-navigation";
 import { baseUrl } from "../shared/baseUrl";
+import * as ImageManipulator from "expo-image-manipulator";
+import * as MediaLibrary from "expo-media-library";
 
 class LoginTab extends Component {
   constructor(props) {
@@ -159,9 +161,42 @@ class RegisterTab extends Component {
         allowsEditing: true,
         aspect: [1, 1],
       });
+
       if (!capturedImage.cancelled) {
         console.log(capturedImage);
         this.setState({ imageUrl: capturedImage.uri });
+        await this.processImage(capturedImage.uri);
+        const asset = await MediaLibrary.saveToLibraryAsync(capturedImage.uri);
+        console.log(asset);
+      }
+    }
+  };
+
+  processImage = async (imgUri) => {
+    const processedImage = await ImageManipulator.manipulateAsync(
+      imgUri,
+      [{ resize: { width: 400, height: 400 } }],
+      { format: ImageManipulator.SaveFormat.PNG }
+    );
+    if (!processedImage.cancelled) {
+      console.log(processedImage);
+      this.setState({ imageUrl: processedImage.uri });
+    }
+  };
+
+  getImageFromGallery = async () => {
+    const cameraRollPermissions = await Permissions.askAsync(
+      Permissions.CAMERA_ROLL
+    );
+    if (cameraRollPermissions.status === "granted") {
+      const capturedImage = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: [1, 1],
+      });
+      if (!capturedImage.cancelled) {
+        console.log(capturedImage);
+        this.setState({ imageUrl: capturedImage.uri });
+        await this.processImage(capturedImage.uri);
       }
     }
   };
@@ -204,6 +239,18 @@ class RegisterTab extends Component {
                 />
               }
               onPress={this.getImageFromCamera}
+            />
+            <Button
+              // title="Camera"
+              icon={
+                <Icon
+                  name="image"
+                  type="font-awesome"
+                  color="#fff"
+                  iconStyle={{ margin: 3 }}
+                />
+              }
+              onPress={this.getImageFromGallery}
             />
           </View>
           <Input
