@@ -274,7 +274,7 @@ class RegisterTab extends Component {
   }
 }
 
-export const Login = createBottomTabNavigator(
+const Login = createBottomTabNavigator(
   {
     Login: LoginTab,
     Register: RegisterTab,
